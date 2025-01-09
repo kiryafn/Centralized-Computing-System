@@ -1,12 +1,10 @@
-package data;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-public class UDPServer{
+public class UDPServer implements Runnable{
     int port;
     Data data;
     private static final byte[] BYTE_BUFFER = new byte[1024];
@@ -15,10 +13,11 @@ public class UDPServer{
     public UDPServer(String port, Data data) throws IOException {
         this.data = data;
         this.port = Integer.parseInt(port);
-        start();
+        System.out.println("started udp");
     }
 
-    public void start() {
+    @Override
+    public void run() {
         try {
             this.udp_socket = new DatagramSocket(port);
         } catch (IllegalArgumentException | SocketException e) {
@@ -43,7 +42,10 @@ public class UDPServer{
                             senderPort
                     );
                     udp_socket.send(acceptPacket);
+                    data.incrementComputedRequests();
                 }
+
+                data.decrementConnectedClients();
             }
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();

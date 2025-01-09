@@ -1,6 +1,3 @@
-
-package data;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,10 +7,10 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) throws IOException {
         // change port
-        int port = 6969;
+        int port = 9090;
 
         // change number of cycles
-        int CYCLES = 5;
+        int CYCLES = 10;
 
         for (int i = 0; i < CYCLES; i++) {
             // UDP
@@ -25,7 +22,7 @@ public class Client {
 
             DatagramPacket send_packet = new DatagramPacket(
                 sendData, sendData.length,
-                InetAddress.getByName("localhost"), port
+                InetAddress.getByName("192.168.0.255"), port
             );
             socket_UDP.send(send_packet);
 
@@ -40,14 +37,14 @@ public class Client {
             socket_UDP.close();
 
 
-            // TCP
+            /*// TCP
             Socket socket_TCP = new Socket(server_address, port);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket_TCP.getInputStream()));
             PrintWriter out = new PrintWriter(socket_TCP.getOutputStream(), true);
 
-            out.println("ADD 2 1");
+            out.println("ADD 4 1");
             String add1 = in.readLine();
-            System.out.println("ADD result: " + add1); // 3
+            System.out.println("ADD result: " + add1); // 5
 
             out.println("SUB 2 1");
             String sub1 = in.readLine();
@@ -65,16 +62,11 @@ public class Client {
             String hi0 = in.readLine();
             System.out.println("HI result: " + hi0); // ERROR
 
-            out.println("DIV 100 0");
+            out.println();
             String div100 = in.readLine();
             System.out.println("DIV result: " + div100); // ERROR
 
-
-            out.println("ADD 100 100 100");
-            String add3 = in.readLine();
-            System.out.println("ADD result: " + add3); // ERROR
-
-            // Sum: 8. Errors: 3. (per ONE cycle)
+            // Sum: 8. Errors: 2. (per ONE cycle)*/
         }
     }
 }

@@ -1,5 +1,3 @@
-package data;
-
 /**
  * The CalculationPrefixes enum represents the prefixes for different arithmetic operations.
  * Each enum constant corresponds to a specific arithmetic operation and holds a string prefix

@@ -1,12 +1,10 @@
-package data;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class TCPServer{
+public class TCPServer implements Runnable{
     Data data;
     int port;
     ServerSocket tcp_socket;
@@ -15,14 +13,20 @@ public class TCPServer{
     public TCPServer(String port, Data data) throws IOException{
         this.data = data;
         this.port = Integer.parseInt(port);
-        start();
+        System.out.println("started tcp");
     }
 
-    public void start() throws IOException{
+    @Override
+    public void run()
+    {
         try{
             tcp_socket = new ServerSocket(port);
-            Socket socket = tcp_socket.accept();
-            executor.execute(new ClientManager(socket, data));
+            while (true){
+                Socket socket = tcp_socket.accept();
+                data.incrementConnectedClients();
+                executor.execute(new ClientManager(socket, data));
+            }
+
 
         }catch (IOException e){
 

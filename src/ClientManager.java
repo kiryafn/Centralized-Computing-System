@@ -1,5 +1,3 @@
-package data;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,13 +24,12 @@ public class ClientManager implements Runnable {
                 // Reading message from client
                 String message = in.readLine();
 
-                // Splitting message to get the operation and operands
                 String[] receivedInfo = message.split(" ");
-                if (receivedInfo.length != 3) {
-                    sendMessage("ERROR");
-                    data.incrementIncorrectOperations();
-                    continue;
-                }
+                    if (receivedInfo.length != 3) {
+                        sendMessage("ERROR");
+                        data.incrementIncorrectOperations();
+                        continue;
+                    }
 
                 // Performing the operation
                 if (receivedInfo[0].equals(Operators.ADDITION.getPrefix())) {
@@ -65,7 +62,7 @@ public class ClientManager implements Runnable {
 
                 // Store statistic data
                 data.incrementComputedRequests();
-            } catch (SocketException e) {
+            } catch (SocketException | NullPointerException e ) {
                 data.decrementConnectedClients();
                 closeConnection();
             } catch (NumberFormatException | ArithmeticException e) {
