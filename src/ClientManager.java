@@ -37,16 +37,19 @@ public class ClientManager implements Runnable {
                     sendMessage(String.valueOf(result));
                     data.incrementAddOperations();
                     data.addToSumOfResults(result);
+
                 } else if (receivedInfo[0].equals(Operators.SUBTRACTION.getPrefix())) {
                     int result = Integer.parseInt(receivedInfo[1]) - Integer.parseInt(receivedInfo[2]);
                     sendMessage(String.valueOf(result));
                     data.incrementSubOperations();
                     data.addToSumOfResults(result);
+
                 } else if (receivedInfo[0].equals(Operators.MULTIPLICATION.getPrefix())) {
                     int result = Integer.parseInt(receivedInfo[1]) * Integer.parseInt(receivedInfo[2]);
                     sendMessage(String.valueOf(result));
                     data.incrementMulOperations();
                     data.addToSumOfResults(result);
+
                 } else if (receivedInfo[0].equals(Operators.DIVISION.getPrefix())) {
                     int result = Integer.parseInt(receivedInfo[1]) / Integer.parseInt(receivedInfo[2]);
                     sendMessage(String.valueOf(result));
@@ -57,13 +60,9 @@ public class ClientManager implements Runnable {
                     data.incrementIncorrectOperations();
                 }
 
-                // Showing received message
-                //clientManagerCallback.onReceivedMessage(message);
-
                 // Store statistic data
                 data.incrementComputedRequests();
             } catch (SocketException | NullPointerException e ) {
-                data.decrementConnectedClients();
                 closeConnection();
             } catch (NumberFormatException | ArithmeticException e) {
                 sendMessage("ERROR");

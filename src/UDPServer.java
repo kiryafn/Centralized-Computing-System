@@ -29,7 +29,7 @@ public class UDPServer implements Runnable{
                 DatagramPacket packet = new DatagramPacket(BYTE_BUFFER, BYTE_BUFFER.length);
                 udp_socket.receive(packet);
                 String received = new String(packet.getData(), 0, packet.getLength());
-                data.incrementConnectedClients();
+                //data.incrementConnectedClients();
 
                 if (received.startsWith("CCS DISCOVER")) {
                     String acceptMessage = "CCS FOUND";
@@ -42,10 +42,8 @@ public class UDPServer implements Runnable{
                             senderPort
                     );
                     udp_socket.send(acceptPacket);
-                    data.incrementComputedRequests();
+                    //data.incrementComputedRequests();
                 }
-
-                data.decrementConnectedClients();
             }
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();

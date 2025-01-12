@@ -10,7 +10,7 @@ public class Client {
         int port = 9090;
 
         // change number of cycles
-        int CYCLES = 10;
+        int CYCLES = 2;
 
         for (int i = 0; i < CYCLES; i++) {
             // UDP
@@ -37,7 +37,7 @@ public class Client {
             socket_UDP.close();
 
 
-            /*// TCP
+            // TCP
             Socket socket_TCP = new Socket(server_address, port);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket_TCP.getInputStream()));
             PrintWriter out = new PrintWriter(socket_TCP.getOutputStream(), true);
@@ -66,7 +66,7 @@ public class Client {
             String div100 = in.readLine();
             System.out.println("DIV result: " + div100); // ERROR
 
-            // Sum: 8. Errors: 2. (per ONE cycle)*/
+            // Sum: 8. Errors: 2. (per ONE cycle)
         }
     }
 }
