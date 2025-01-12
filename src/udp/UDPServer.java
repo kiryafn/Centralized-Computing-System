@@ -1,3 +1,7 @@
+package udp;
+
+import data.Data;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -10,7 +14,7 @@ public class UDPServer implements Runnable{
     private static final byte[] BYTE_BUFFER = new byte[1024];
     DatagramSocket udp_socket;
 
-    public UDPServer(String port, Data data) throws IOException {
+    public UDPServer(String port, Data data){
         this.data = data;
         this.port = Integer.parseInt(port);
         System.out.println("started udp");
@@ -21,7 +25,7 @@ public class UDPServer implements Runnable{
         try {
             this.udp_socket = new DatagramSocket(port);
         } catch (IllegalArgumentException | SocketException e) {
-            System.out.println("Invalid port number");
+            e.printStackTrace();
             return;
         }
         try  {
@@ -31,8 +35,8 @@ public class UDPServer implements Runnable{
                 String received = new String(packet.getData(), 0, packet.getLength());
                 //data.incrementConnectedClients();
 
-                if (received.startsWith("CCS DISCOVER")) {
-                    String acceptMessage = "CCS FOUND";
+                if (received.startsWith("data.CCS DISCOVER")) {
+                    String acceptMessage = "data.CCS FOUND";
                     InetAddress address = packet.getAddress();
                     int senderPort = packet.getPort();
                     DatagramPacket acceptPacket = new DatagramPacket(

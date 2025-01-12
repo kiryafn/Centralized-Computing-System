@@ -1,3 +1,5 @@
+package client;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,19 +12,19 @@ public class Client {
         int port = 9090;
 
         // change number of cycles
-        int CYCLES = 2;
+        int CYCLES = 10;
 
         for (int i = 0; i < CYCLES; i++) {
-            // UDP
+            /*// UDP
             DatagramSocket socket_UDP = new DatagramSocket();
 
             // send UDP
-            String discoveryMessage = "CCS DISCOVER";
+            String discoveryMessage = "data.CCS DISCOVER";
             byte[] sendData = discoveryMessage.getBytes();
 
             DatagramPacket send_packet = new DatagramPacket(
-                sendData, sendData.length,
-                InetAddress.getByName("192.168.0.255"), port
+                    sendData, sendData.length,
+                    InetAddress.getByName("192.168.0.255"), port
             );
             socket_UDP.send(send_packet);
 
@@ -34,11 +36,11 @@ public class Client {
 
             // address
             InetAddress server_address = receive_packet.getAddress();
-            socket_UDP.close();
+            socket_UDP.close();*/
 
 
             // TCP
-            Socket socket_TCP = new Socket(server_address, port);
+            Socket socket_TCP = new Socket("localhost", port);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket_TCP.getInputStream()));
             PrintWriter out = new PrintWriter(socket_TCP.getOutputStream(), true);
 
@@ -66,7 +68,7 @@ public class Client {
             String div100 = in.readLine();
             System.out.println("DIV result: " + div100); // ERROR
 
-            // Sum: 8. Errors: 2. (per ONE cycle)
+            // Sum: 10. Errors: 2. (per ONE cycle)*/
         }
     }
 }

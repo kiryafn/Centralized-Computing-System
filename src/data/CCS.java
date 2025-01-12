@@ -1,3 +1,5 @@
+package data;
+
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,7 +11,6 @@ public class CCS {
 
         String port = "9090";
 
-        // Запуск TCP и UDP серверов
         executor.execute(data);
         executor.execute(new UDPServer(port, data));
         executor.execute(new TCPServer(port, data));

@@ -1,3 +1,5 @@
+package data;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Data implements Runnable {
@@ -60,26 +62,26 @@ public class Data implements Runnable {
     }
 
     public String getData() {
-        return "The number of connected clients since start: " + connectedClients.get() + "\n" +
-                "The number of computed requests since start: " + computedRequests.get() + "\n" +
+        return  "Сonnected clients since start: " + connectedClients.get() + "\n" +
+                "Сomputed requests since start: " + computedRequests.get() + "\n" +
                 "The numbers of particular requested operations since start:" + "\n" +
                 "Add operations: " + addOperations.get() + "\n" +
                 "Sub operations: " + subOperations.get() + "\n" +
                 "Mul operations: " + mulOperations.get() + "\n" +
                 "Div operations: " + divOperations.get() + "\n" +
-                "The number of incorrect operations since start: " + incorrectOperations.get() + "\n" +
-                "The sum of computed values since start: " + sumOfResults.get();
+                "Incorrect operations: " + incorrectOperations.get() + "\n" +
+                "The sum of computed values: " + sumOfResults.get();
     }
 
     public String getRecentData() {
-        return "The number of newly connected clients (last 10 sec): " + connectedClientsLast10Seconds.get() + "\n" +
-                "The number of computed requests (last 10 sec): " + computedRequestsLast10Seconds.get() + "\n" +
+        return  "Newly connected clients (last 10 sec): " + connectedClientsLast10Seconds.get() + "\n" +
+                "Computed requests (last 10 sec): " + computedRequestsLast10Seconds.get() + "\n" +
                 "The numbers of particular requested operations (last 10 sec):" + "\n" +
                 "Add operations: " + addOperationsLast10Seconds.get() + "\n" +
                 "Sub operations: " + subOperationsLast10Seconds.get() + "\n" +
                 "Mul operations: " + mulOperationsLast10Seconds.get() + "\n" +
                 "Div operations: " + divOperationsLast10Seconds.get() + "\n" +
-                "The number of incorrect operations: " + incorrectOperationsLast10Seconds.get() + "\n" +
+                "Incorrect operations: " + incorrectOperationsLast10Seconds.get() + "\n" +
                 "The sum of computed values: " + sumOfResultsLast10Seconds.get();
     }
 
@@ -104,7 +106,8 @@ public class Data implements Runnable {
                 System.out.println();
                 System.out.println("Statistics from the last 10 seconds:");
                 System.out.println(getRecentData());
-                System.out.println("====================================================================================================");
+                System.out.println();
+                System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 System.out.println();
 
                 resetRecentData();
